@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <div>{{num}}</div>
+        <button @click="getAdd1">点击1</button>
+        <button @click="getAdd2">点击2</button>
+        <div @click="getAdd3">
+            <!-- .stop阻止事件冒泡 -->
+            <button @click.stop>点击3</button>
+        </div>
+        <!-- .prevent 阻止默认行为 -->
+        <!-- 更多事件修饰符可以查询官方文档 -->
+        <a href="http://www.baidu.com" @click.prevent>百度</a>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                num: 0
+            },
+            methods: {
+                getAdd1: function () {
+                    this.num++
+                },
+                getAdd2: function () {
+                    this.num++
+                },
+                getAdd3: function () {
+                    this.num++
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

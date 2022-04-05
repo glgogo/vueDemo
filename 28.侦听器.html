@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <label for="">姓：</label>
+        <input type="text" v-model="firstName">
+        <br>
+        <label for="">名：</label>
+        <input type="text" v-model="lastName">
+        <div>{{fullName}}</div>
+    </div>
+    <script>
+        /*
+            watch:监听data中数据的变化，如果数据发生变化时，就会触发watch内定义的方法
+            methods方法有时候同样可以实现此方法
+        */
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                firstName: 'Joen',
+                lastName: 'Green',
+                fullName: 'Joen Green'
+            },
+            methods: {
+                // fullName: function () {
+                //     // return this.firstName + " " + this.lastName;
+                // }
+            },
+            watch: {
+                firstName: function (val) {
+                    this.fullName = val + " " + this.lastName;
+                },
+                lastName: function (val) {
+                    this.fullName = this.firstName + " " + val;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

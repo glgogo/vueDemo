@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <form id="form1">
+        <label for="uname">用户名:</label>
+        <!-- v-on:keyup.delete 使用键盘上delete键处理事件 清空输入框内容-->
+        <input type="text" v-model="uname" v-on:keyup.delete="clearContent()">
+        <label for="uname">密码:</label>
+        <!-- v-on:keyup.enter 使用键盘上enter键处理事件 提交表单 -->
+        <input type="password" v-model="psw" v-on:keyup.enter="handle1()">
+        <input type="button" value="提交" @click="handle1"></input>
+    </form>
+    <script>
+        var vm = new Vue({
+            el: '#form1',
+            data: {
+                uname: '',
+                psw: ''
+            },
+            methods: {
+                clearContent: function () {
+                    this.uname = ''
+                },
+                handle1: function () {
+                    // alert(1)
+                    console.log(this.uname, this.psw)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

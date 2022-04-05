@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <!-- 使用原始方法实现文字翻转 -->
+        <div>{{msg.split('').reverse().join('')}}</div>
+        <!-- 使用computed方法实现文字翻转（使用时插值表达式内直接写函数名即可，不要加括号） -->
+        <div>{{reserveWords}}</div>
+    </div>
+    <script>
+        /*
+            computed:定义计算方法，使用计算属性可以使模板内容更加简洁
+            例子：
+            <div>{{reverseWords}}</div>
+            computed:{
+                reverseWords:function(){
+                    this.msg.split('').reverse().join('');
+                }
+            }
+            computed的特性：计算属性时寄语它们的依赖进行缓存的
+
+        */
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                msg: 'hello world',
+                newMsg: 'nihao vue'
+            },
+            methods: {
+
+            },
+            computed: {
+                reserveWords: function () {
+                    return this.newMsg.split('').reverse().join('');
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

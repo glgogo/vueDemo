@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <div>水果列表</div>
+        <ul>
+            <!-- 使用v-for遍历简单型数组，将数据渲染到页面中 -->
+            <li v-for="(item,index) in frult">{{item + '----' + index}}</li>
+            <!-- 使用v-for遍历复杂型数组，将数据渲染到页面中 -->
+            <li v-for="item in myFrult">{{item.id + '---' + item.ename + '---' + item.cname}}</li>
+            <!-- key指令的作用：帮助Vue区分不同的元素，从而提高性能 
+                key中的值可以唯一识别区分数组对象，如果无法通过对象属性区分，可以使用index代替
+            -->
+            <li :key='item.id' v-for="item in myFrult">{{item.id + '---' + item.ename + '---' + item.cname}}</li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                // 简单型数组
+                frult: ['apple', 'orang', 'banana'],
+                // 复杂数组
+                myFrult: [
+                    {
+                        id: 1,
+                        ename: 'apple',
+                        cname: '苹果'
+                    }, {
+                        id: 2,
+                        ename: 'orang',
+                        cname: '橘子'
+                    }, {
+                        id: 3,
+                        ename: 'banana',
+                        cname: '香蕉'
+                    }
+                ]
+
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue起步hellow world</title>
+</head>
+
+<body>
+    <!-- 第二步：添加挂载数据标签 -->
+    <div id="app">
+        <!-- {{}}为插值表达式 -->
+        <div>{{msg}}</div>
+        <!-- 插值表达式中可以插入js表达式 -->
+        <!-- 计算结果为3 -->
+        <div>{{1 + 2}}</div>
+        <!-- 实现字符串拼接 输出 hellow world------你好 -->
+        <div>{{msg + '------' + '你好'}}</div>
+    </div>
+    <!-- 第一步：引入veu.js文件 -->
+    <script src="js/vue.min.js"></script>
+    <script>
+        // 第三步：创建vue实例
+        var app = new Vue({  //注意此处的Vue 首字母一定要大写
+            //el：设置挂载位置 即数据填充到哪个位置
+            el: '#app',
+            //data:设置挂载到页面中的数据（以对象形式声明）
+            data: {
+                msg: 'hellow world'
+            }
+        })
+    </script>
+</body>
+
+</html>

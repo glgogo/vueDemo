@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <!-- 注意：这里是style行内样式，不是class样式 -->
+        <div v-bind:style="{width:widthStyle,height:heightStyle,border:borderStyle}"></div>
+        <!-- 对象方式行内样式的简写方式 ，将所有样式定义到对象中，直接引用对象名-->
+        <div v-bind:style="objStyle"></div>
+        <!-- 以数组形式传递对象参数 注意：如果两个对象内有冲突样式，后面的对象会将前面
+        对象的样式覆盖-->
+        <div :style="[objStyle,objStyle2]"></div>
+        <button @click="handle">切换</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '.app',
+            data: {
+                widthStyle: '100px',
+                heightStyle: '200px',
+                borderStyle: '1px solid blue',
+                objStyle: {
+                    width: '200px',
+                    height: '100px',
+                    border: '1px solid red'
+                },
+                objStyle2: {
+                    border: '5px solid pink',
+                    backgroundColor: 'skyblue   '
+                }
+
+            },
+            methods: {
+                handle: function () {
+                    this.heightStyle = '100px';
+                    this.objStyle.width = '100px';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

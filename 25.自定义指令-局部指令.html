@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <input type="text" v-color="color">
+
+        <input type="text" v-focus>
+    </div>
+    <script>
+        /*
+            自定义指令：局部指令定义方法
+            局部指令只在所在组件的实例中使用
+        */
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                color: 'pink'
+            },
+            //定义局部指令
+            // directives: {
+            //     //定义改变背景颜色指令
+            //     color: {
+            //         inserted: function (el, data) {
+            //             el.style.backgroundColor = data.value;
+            //         }
+            //     },
+            //     //定义多个局部指令方法，自动获得焦点
+            //     focus: {
+            //         inserted: function (el) {
+            //             el.focus();
+            //         }
+            //     }
+            // }
+            //第二次练习
+            directives: {
+                color: {
+                    inserted: function (el, data) {
+                        el.style.backgroundColor = data.value;
+                    }
+                },
+                focus: {
+                    inserted: function (el, data) {
+                        el.focus();
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

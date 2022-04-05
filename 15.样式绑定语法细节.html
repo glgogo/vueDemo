@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+    <style>
+        .active {
+            width: 100px;
+            height: 100px;
+            border: 1px solid pink;
+        }
+
+        .error {
+            background: skyblue;
+        }
+
+        .test {
+            color: blue;
+        }
+
+        .base {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <!-- //两种方式结合使用 -->
+        <div :class="[activeClass,errorClass,{test:isTest}]">测试文本1</div>
+        <button @click="toggle1">切换1</button>
+        <!-- 数组形式绑定可以简化类名 -->
+        <div :class="allClass">测试文本2</div>
+        <button @click="toggle2">切换2</button>
+        <!-- 对象形式绑定可以简化对象名 -->
+        <div :class="objClass">测试文本3</div>
+        <button @click="toggle3">切换3</button>
+        <!-- 已经定义好的类名中的样式不会被覆盖 -->
+        <div class='base' :class="objClass">测试文本4</div>
+    </div>
+    <script>
+        /*
+        样式绑定相关语法细节：
+        1.对象绑定和数组绑定可以结合使用；
+        2.class绑定的值可以简化操作；
+        3.默认的class如何处理：如果标签内已经有默认的class属性，使用v-bind添加的类名会与
+          现有的class类名同时存在，不会覆盖默认的class属性
+        
+        */
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                activeClass: 'active',
+                errorClass: 'error',
+                isTest: true,
+                allClass: ['active', 'error'],
+                objClass: {
+                    active: true,
+                    error: true
+                }
+            },
+            methods: {
+                toggle1: function () {
+                    this.isTest = !this.isTest;
+                },
+                toggle2: function () {
+                    this.allClass[1] = '';
+                    // console.log(this.allClass)
+                },
+                toggle3: function () {
+                    this.objClass.error = false;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

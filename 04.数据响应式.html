@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <!-- 数据响应式：msg中内容发生变化是，嵌入到页面中的msg数据也会跟随发生变化 -->
+        <div v-text='msg'></div>
+        <!-- v-once 此标签内只编译一次，不能再定义msg1中数据内容可以使用在那些一旦定义了
+            就不再改变的数据上
+            可以略微提升性能
+        -->
+        <div v-once v-text="msg1"></div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '.app',
+            data: {
+                msg: 'hellow vue',
+                msg1: 'nihao'
+
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+        <!-- 与插值表达式效果相同，通过v-text在标签中插入纯文本数据 -->
+        <div v-text='msg'></div>
+        <!-- v-html可以将字符串中的标签一起编译
+        缺点：存在安全问题，在本网站内数据请求可以使用，如果跨域请求数据存在攻击风险
+        -->
+        <div v-html='msg1'></div>
+        <!-- v-pre可以让添加此属性的标签插值表达式按照纯文本显示，跳过编译步骤 -->
+        <div v-pre><span>{{msg1}}</span></div>
+    </div>
+    <script src="../js/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hellow world',
+                msg1: '<h1>hellow world</h>'
+            }
+        })
+    </script>
+</body>
+
+</html>

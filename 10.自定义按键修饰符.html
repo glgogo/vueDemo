@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        //这里指定按键修饰符时，可以直接使用name_a
+        <input type="text" v-on:keyup.name_a="handle1">
+    </div>
+    <script>
+        /*
+        事件对象：自定义按键修饰符  语法结构：Vue.config.keyCodes.xxx = 65;65为a的keyCode码
+        规则：自定义按键修饰符名字是自定义的，但是对应的值为event.keyCode对应的键值
+        */
+        Vue.config.keyCodes.name_a = 65;//这里的意思是把a键自定义名称为name_a
+        var vm = new Vue({
+            el: '.app',
+            data: {
+
+            },
+            methods: {
+                handle1: function () {
+                    alert('您按了a键')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

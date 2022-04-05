@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <!-- v-model.number:将文本输入框中的内容转化为数值型（文本框中获取的数据均为文本型） -->
+        <input type="text" v-model.number="age">
+        <button @click="handle">提交</button>
+        <!-- v-model.trim:去除文本框中数据的前后空格，类似于ES6中trim()方法 -->
+        <input type="text" v-model="msg">
+        <button @click="handle1">显示</button>
+        <br>
+        <!-- v-model.lazy:将input事件转化为change事件 -->
+        <input type="text" v-model.lazy="order">
+        <div>{{order}}</div>
+    </div>
+    <script>
+        /*
+            表单修饰符：
+            1.number:转化为数值
+            2.trim:去掉开始和结尾的空格
+            3.lazy:将input事件切换为change事件(input事件为表单内容发生变化时触发，change事件
+                为表单失去焦点时触发)
+            例：<input v-model.number="age" type="number" />
+        */
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                age: 18,
+                msg: '',
+                order: 'I like vue'
+            },
+            methods: {
+                handle: function () {
+                    console.log(this.age + 12)
+                },
+                handle1: function () {
+                    console.log(this.msg.length)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

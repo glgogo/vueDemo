@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <label for="">用户名：</label>
+        <input type="text" v-model.lazy="uname">
+        <span>{{msg}}</span>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                uname: '',
+                msg: ''
+            },
+            methods: {
+                //封装模拟请求服务器函数
+                handle: function (uname) {
+                    //定时器中this指向window，需要改变this指向
+                    var that = this;
+                    setTimeout(function (uname) {
+                        if (that.uname == 'admin' || that.uname == 'adm') {
+                            that.msg = '该用户名已存在，请重新输入';
+                        } else {
+                            that.msg = '该用户名可以注册！'
+                        }
+                    }, 2000)
+
+                }
+            },
+            watch: {
+                //注意这里的监听数据一定要鱼data中的属性一致，否则无效
+                uname: function (uname) {
+                    //调用模拟服务器请求验证函数
+                    this.handle(uname);
+                    this.msg = '正在验证用户名，请稍后';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

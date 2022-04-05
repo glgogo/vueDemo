@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+
+    <div class="app">
+        <!-- 事件绑定：v-bind 实例 -->
+        <a v-bind:href="url" v-text="baidu"></a>
+        <a :href="url" v-text="baidu"></a>
+        <button @click="toggle">切换</button>
+        <!-- v-model底层实现原理 -->
+        <div>{{msg}}</div>
+        <input type="text" :value="msg" @input="binding">
+    </div>
+
+    <script>
+        /*
+        事件绑定：v-bind:href='ulr'  可以简写为：:href='ulr'  
+        v-model底层实现原理：通过v-bind:绑定表单事件的value属性，通过v-on:input事件
+        实时更新input表单中的value值，如下例子
+        */
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                url: 'http://www.baidu.com',
+                baidu: '百度',
+                msg: 'hello'
+            },
+            methods: {
+                toggle: function () {
+                    this.url = 'http://www.google.com';
+                    this.baidu = 'google';
+                },
+                binding: function (e) {
+                    //通过input事件触发实时更新msg中的数据，从而实现双向绑定
+                    this.msg = e.target.value;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

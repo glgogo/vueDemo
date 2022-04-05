@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <!-- 3.使用注册组件名引入到vue实例绑定的元素上 -->
+        <!-- 4.组件是可以被重用的：多个相同组件互不影响，单独生效 -->
+        <count>组件1</count>
+        <count>组件2</count>
+        <count>组件3</count>
+        <!-- 注意：在标签模板里，使用驼峰命名法会失效 -->
+        <!-- <MyComponent></MyComponent> -->
+        <!-- 注意：这里使用短横线命名法的组件名称，直接使用在标签模板中可正常生效 -->
+        <my-component></my-component>
+    </div>
+    <script>
+        /*
+            一、全局组件注册方式：
+                Vue.component('组件名',{
+                    data:function(){
+                        return {
+                            msg:'hello world'
+                        }
+                    },
+                    template:'<div @click="xxx">{{msg}}</div>',
+                    methods:{
+                        ……
+                    }
+                })
+            二、组件的注意事项：
+                1、组件中的data属性是一个函数;
+                2、组件中的template中必须包含一个根元素，模板内不能全部为兄弟元素，例如：
+                    错误方法：template:'<button>……</button><button>……</button>' ,两个个button为兄弟关系，会出现报错情况；
+                    正确方法:template:'<div><button>……</button><button>……</button></div>',其中div作为组件模板的根元素；
+                3、组件模板内容可以使用ES6中的模板字符串：好处是可以提高模板内容的可读性；
+                4、组件的命名方式：
+                  (1)短横线式命名方法：推荐使用方式，因为在组件模板和标签模板中都可以使用
+                    Vue.component('my-component',{……})
+                  (2)驼峰命名法：不推荐使用，因为驼峰命名方式只能应用于组件模板中，在标签模板中使用会出现报错或者无效
+                    Vue.component('MyComponent',{……})
+        */
+        //驼峰式命名法的组件
+        Vue.component('MyComponent', {
+            data: function () {
+                return {
+                    msg: 'Hello World'
+                }
+            },
+            template: '<div>{{msg}}</div>'
+        })
+        //    2.注册全局组件模板
+        Vue.component('count', {
+            //注意：注册组件data属性为一个函数
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            // template: '<button @click="count++">点击了{{count}}次</button>',
+            // 注册组件的模板语法：和正常的基础语法操作是相同的
+            // template: '<button @click="handle">点击了{{count}}次</button>',
+            // 这里是演示组件模板必须有一个根元素
+            // 无根元素的错误方式。后面的测试按钮无法正常显示
+            // template: '<button @click="handle">点击了{{count}}次</button><button>测试</button>',
+            // 正确方式：需要有一个div作为根元素包裹两个兄弟关系的div
+            // template: '<div><button @click="handle">点击了{{count}}次</button><button>测试</button></div>',
+            // 使用模板字符串形式:优点。可以换行显示，增加可读性
+            // template: `<div>
+            //                 <button @click="handle">点击了{{count}}次</button>
+            //                 <button>测试</button>
+            //                 <MyComponent></MyComponent>
+            //             </div>`,
+            template: `<div>
+                            <button @click="handle">点击了{{count}}次</button>
+                            <button>测试</button>
+                            <my-component></my-component>
+                        </div>`,
+            methods: {
+                handle: function () {
+                    this.count += 2;
+                }
+            }
+        })
+        // 1.注册vue实例
+        var vm = new Vue({
+            el: '.app',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

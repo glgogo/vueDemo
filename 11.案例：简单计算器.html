@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <h3>简单计算器</h3>
+        <label for="">数值A:</label>
+        <input type="text" v-model="num1"><br>
+        <label for="">数值B:</label>
+        <input type="text" v-model="num2"><br>
+        <input type="button" value="计算" @click="add()">
+        <div>计算结果：<span v-text="sum"></span></div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                num1: '',
+                num2: '',
+                sum: ''
+            },
+            methods: {
+                add: function (num1, num2) {
+                    return this.sum = parseInt(this.num1) + parseInt(this.num2);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <div>{{info}}</div>
+        <div v-once>{{msg}}</div>
+    </div>
+    <script>
+        // v-once使用场景：如果显示的信息后续不需要再更改，可以使用v-once，这样可以提高性能
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                info: 'nihao',
+                msg: 'hellow world'
+            }
+        })
+    </script>
+</body>
+
+</html>

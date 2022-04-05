@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="msg">
+        <!-- 过滤器名称在插值表达式中的提现方式 -->
+        <div>{{msg | fil}}</div>
+    </div>
+    <script>
+        /*
+            不带参数的过滤器（全局过滤器和局部过滤器）：
+            1.全局：定义在全局范围内
+                Vue.filter('过滤器名称',function(data){
+                    return ------其他代码
+                })
+            2.局部：定义在组件内部
+                filters:{
+                    过滤器名称:function(value){
+                        return ------其他代码
+                    }
+                }
+            3.过滤器的使用方法：
+                <div>{{msg | filter}}</div>
+                <div>{{msg | filter1 | filter2}}</div> //多个过滤器可以同时使用
+                <div v-bind:abc="msg | filter"></div> //可以在自定义属性中过滤数据
+        */
+        //全局过滤器
+        // Vue.filter('fil', function (value) {
+        //     return value.charAt(0).toUpperCase() + value.slice(1)
+        // })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: ''
+            },
+            //局部过滤器
+            filters: {
+                fil: function (value) {
+                    return value.charAt(0).toUpperCase() + value.slice(1);
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

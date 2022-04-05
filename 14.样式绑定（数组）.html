@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+    <style>
+        .active {
+            width: 100px;
+            height: 100px;
+            border: 1px solid pink;
+        }
+
+        .error {
+            background: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div :class="[activeClass,errorClass]">测试样本</div>
+        <button @click="toggle">切换</button>
+    </div>
+    <script>
+        /*
+        以数组形式进行样式绑定：使用v-bind:class="[activeClass,errorClass]"方式进行绑定
+
+        */
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                activeClass: 'active',
+                errorClass: 'error'
+            },
+            methods: {
+                toggle: function () {
+                    //清空一个类名的方法
+                    this.activeClass = '';
+                    this.errorClass = '';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

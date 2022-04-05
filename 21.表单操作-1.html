@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <form action="www.baidu.com">
+            <div>
+                <label for="uname">用户名:</label>
+                <!-- 文本输入框：直接使用v-model双向绑定数据 -->
+                <input type="text" id="uname" v-model="uname">
+            </div>
+
+            <div>
+                <span>性别:</span>
+                <span>
+                    <!-- 单选框：需要使用value属性辅助及v-model完成数据双向绑定， -->
+                    <input type="radio" id="male" name="myradio" value="1" v-model="gender">
+                    <label for="male">男</label>
+                    <input type="radio" id="female" name="myradio" value="2" v-model="gender">
+                    <label for=" female">女</label>
+                </span>
+            </div>
+
+            <div>
+                <span>爱好:</span>
+                <span>
+                    <!-- 复选框：需要使用value属性辅助及v-model完成数据双向绑定 -->
+                    <input type="checkbox" id="ball" value="1" v-model="hobby">
+                    <label for="ball">打篮球</label>
+                    <input type="checkbox" id="eat" value="2" v-model="hobby">
+                    <label for="eat">吃饭</label>
+                    <input type="checkbox" id="code" value="3" v-model="hobby">
+                    <label for="code">写代码</label>
+                </span>
+            </div>
+
+            <div>
+                <span>职业：</span>
+                <!-- 下拉框：需要使用value属性辅助及v-model完成数据的双向绑定 -->
+                <select name="work" id="work" v-model="occupation">
+                    <option value="0">请选择职业</option>
+                    <option value="1">程序员</option>
+                    <option value="2">厨师</option>
+                    <option value="3">自由职业</option>
+                </select>
+            </div>
+            <div>
+                <label for="">个人简介:</label>
+                <!-- 文本域：与文本框双向绑定数据方式相同，直接使用v-model实现 -->
+                <textarea v-model="profile"></textarea>
+            </div>
+            <!-- 表单提交按钮：需要点击提交事件添加阻止默认行为功能，阻止表单内容直接提交
+                因为目前数据提交都需要手工使用ajax提交至服务器
+            -->
+            <input type="submit" value="提交" @click.prevent="handle">
+        </form>
+    </div>
+    <script>
+        /*
+            1.<!-- 文本输入框：直接使用v-model双向绑定数据 -->
+            2.<!-- 单选框：需要使用value属性辅助及v-model完成数据双向绑定 -->
+            3.<!-- 复选框：需要使用value属性辅助及v-model完成数据双向绑定 -->
+            4.<!-- 下拉框：需要使用value属性辅助及v-model完成数据的双向绑定 -->
+            5.<!-- 文本域：与文本框双向绑定数据方式相同，直接使用v-model实现 -->
+            6.<!-- 表单提交按钮：需要点击提交事件添加阻止默认行为功能，阻止表单内容直接提交
+                    因为目前数据提交都需要手工使用ajax提交至服务器
+            -->
+            
+        */
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                uname: '请输入用户名',
+                gender: 1,
+                hobby: ['1', '2'],
+                occupation: 1,
+                profile: 'I like vue!'
+            },
+            methods: {
+                handle: function () {
+                    console.log(this.uname);
+                    console.log(this.gender);
+                    console.log(this.hobby)
+                    console.log(this.occupation)
+                    console.log(this.profile)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <div>{{num}}</div>
+        <!-- v-on:事件绑定，可以简写为@: -->
+        <button v-on:click="num++">按钮1</button>
+        <!-- 简写形式 -->
+        <button @click="num++">按钮2</button>
+        <!-- 利用methods中定义函数方式，行内调用 可以使用两种方式一种是加括号，一种是不加括号 -->
+        <!-- 
+            两种调用方式的区别：
+            1、直接使用函数名调用函数，需要再函数本身传递参数$event，可以通过参数操作事件对象
+            2、可以使用函数名()方式调用，可以传递多个参数，但是$event必须作为最后一个参数进行传递
+            并且此参数名称必须为$event
+         -->
+        <button @click="getAdd1">按钮3</button>
+        <button @click="getAdd2(1,2,$event)">按钮4</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                num: 0
+            },
+            methods: {
+                getAdd1: function ($event) {
+                    // 此处的this指向vue实例对象
+                    console.log(this === vm) //返回true
+                    this.num++
+                    console.log($event.target.innerHTML)
+                },
+                getAdd2: function (num1, num2, $event) {
+                    // 此处的this指向vue实例对象
+                    console.log(this === vm) //返回true
+                    this.num++
+                    console.log($event.target.innerHTML)
+                    // $event.target.innerHTML = num1 + num2
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <!-- 带参数的自定义指令用法 -->
+        <input type="text" v-color="color" v-focus>
+    </div>
+    <script>
+        // 创建一个可以修改背景颜色的指令
+        // Vue.directive('color', {
+        //     inserted: function (el, data) {
+        //         // 根据指令的参数设置背景颜色
+        //         el.style.backgroundColor = data.value;
+        //         console.log(data)
+        //         console.log(el)
+        //     }
+        // })
+        Vue.directive('focus', {
+            inserted: function (el, data) {
+                el.focus();
+            }
+        })
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                color: 'purple'
+            }
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

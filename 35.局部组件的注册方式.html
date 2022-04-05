@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <component-a></component-a>
+        <component-b></component-b>
+        <component-c></component-c>
+    </div>
+    <script>
+        /*
+            一、局部组件的注册方式：
+                var componentA = {
+                    data:function(){
+                        return {
+                            msg:'componentA'
+                        }
+                    }
+                }
+                var app = new Vue({
+                    el:'.app',
+                    components:{
+                        'component-a':componentA,
+                    }
+                })
+        */
+        //    2.使用var 组件名的方式注册组件
+        var componentA = {
+            data: function () {
+                return {
+                    msg: 'componentA'
+                }
+            },
+            template: `<div>{{msg}}</div>`
+        };
+        var componentB = {
+            data: function () {
+                return {
+                    msg: 'componentB'
+                }
+            },
+            template: `<div>{{msg}}</div>`
+        };
+        var componentC = {
+            data: function () {
+                return {
+                    msg: 'componentC'
+                }
+            },
+            template: `<div>{{msg}}</div>`
+        }
+        var app = new Vue({
+            el: '.app',
+            data: {
+                msg: 'hello'
+            },
+            //1.在实例对象中定义局部组件，注意components是复数名词
+            components: {
+                'component-a': componentA,
+                'component-b': componentB,
+                'component-c': componentC
+            }
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <div>{{reverseWord()}}</div>
+        <div>{{reverseWord()}}</div>
+        <div>{{reverseWords}}</div>
+        <div>{{reverseWords}}</div>
+    </div>
+    <script>
+        /*
+            计算属性和方法的区别：
+            1.计算属性是基于它们的依赖进行缓存的，意思是只有涉及计算的源数据（data中的数据）
+            发生改变时， 计算属性中的方法才会重新被调用；
+            2.方法不存在缓存
+            计算属性能够在一定程度上减少计算次数，提高性能
+        */
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                msg1: 'nihao',
+                msg2: 'hello'
+            },
+            methods: {
+                reverseWord: function () {
+                    console.log('methods')
+                    return this.msg1.split('').reverse().join('');
+                }
+            },
+            computed: {
+                reverseWords: function () {
+                    console.log('computed')
+                    return this.msg2.split('').reverse().join('');
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

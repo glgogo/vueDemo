@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <!-- //使用vue遍历对象 -->
+        <div v-for="(value,key,index) in obj">{{key + value + index}}</div>
+        <!-- //v-if与v-for结合使用 v-if 用于判断条件，循环过程中符合v-if中的条件才会被执行渲染-->
+        <div v-if='value == "张三"' v-for='(value,key,index) in obj'>{{key + '---' + value + '---' + index}}</div>
+    </div>
+    <script>
+        //原生js遍历对象
+        var obj = {
+            name: '张三',
+            age: 18,
+            gender: '男'
+        }
+
+        for (var value in obj) {
+            console.log(value + ':' + obj[value]);
+        }
+        //使用vue遍历对象
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                obj: {
+                    name: '张三',
+                    age: 18,
+                    gender: '男'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

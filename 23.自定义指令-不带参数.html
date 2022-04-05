@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <!-- 这个文本框不会自动获得焦点 -->
+        <input type="text">
+        <!-- 这个文本框会自动获得焦点 -->
+        <input type="text" v-focus>
+    </div>
+
+    <script>
+        /*
+            自定义指令：
+        */
+        // 这里是自定义了一个表单自动获得焦点的指令v-focus
+        Vue.directive('focus', {
+            inserted: function (el) {
+                el.focus();
+            }
+        })
+
+        var vm = new Vue({
+            el: '.app',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

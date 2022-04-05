@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUE</title>
+    <style>
+        /* 防止插值表达式加载时闪动 */
+        [v-cloack] {
+            display: none;
+        }
+    </style>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <!-- v-cloak:解决差值表达式“闪动”问题
+    *用法：
+    1、在css文件中中加入以下样式：[v-cloak]为属性选择器
+        [v-cloack] {
+            display:none;
+        }
+    2、在插值表达式所在标签添加v-cloak属性
+    3、原理：先通过样式进行隐藏，然后在内存中进行值得替换，替换好后再显示替换好后的值
+    -->
+    <div id="demo">{{message}}</div>
+    <button></button>
+    <script>
+        var app = new Vue({
+            el: '#demo',
+            data: {
+                message: 'hello world'
+            }
+
+        })
+    </script>
+</body>
+
+</html>

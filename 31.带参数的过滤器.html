@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 带参数的过滤器中的参数，是从第二个参数开始接收的
+            意思是：function(value,arg1,...) 那么changeDate('yyyy-mm-dd')中的yyyy-mm-dd对应
+            的是形参arg1
+        -->
+        <div>{{msg | changeDate('yyyy-mm-dd')}}</div>
+    </div>
+    <script>
+        /*
+            带参数的过滤器（全局和局部）：
+            1.带参数的全局过滤器：
+                Vue.filter('过滤器名称',function(value,arg1,...){
+                    return ----其他代码;
+                })
+            2.带参数的局部过滤器：
+                filters:{
+                    过滤器名称：function(value,arg1,...){
+                        return ----其他代码
+                    }
+                }
+            注意：带参数过滤器，第一个实参为要处理的数据，所以不用提现到实参传递列表中
+                  所以实参传递时，第一个实参对应函数中第二个形参
+        */
+        Vue.filter('changeDate', function (value, arg1) {
+            var y = value.getFullYear();
+            var m = value.getMonth() + 1;
+            var d = value.getDate();
+            if (arg1 == 'yyyy-mm-dd') {
+                return y + '-' + m + '-' + d;
+            }
+
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: new Date()
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <!-- v-if指令使用案例 -->
+        <div v-if="score>=90">优</div>
+        <div v-else-if="score<90 && score>=80">良</div>
+        <div v-else-if="score<80 && score>=70">可</div>
+        <div v-else>差</div>
+        <!-- v-show指令使用案例 -->
+        <div v-show="flag">显示与隐藏</div>
+        <button @click="toggle">切换</button>
+    </div>
+    <script>
+        /*
+            1、v-if/v-else/v-else-if:这三个指令可以两个一起用或者三个一起用，可以通过判断
+            条件来控制元素是否显示
+            2、v-show:通过flag：true / false 控制元素是否被显示
+            3、v-if 和 v-show 的区别：
+            >>> v-if:控制元素是否被渲染到页面（判断条件为false时不会被渲染到页面），经常用于
+            渲染到页面后不再经常改变显示和隐藏的标签元素
+            >>> v-show:控制元素的显示和隐藏（类似于display:none）,不管显示与否，标签元素已经
+            渲染到页面中了,经常使用在需要反复显示和隐藏的标签元素上
+        */
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                score: 40,
+                flag: true
+            },
+            methods: {
+                toggle: function () {
+                    this.flag = !this.flag;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
