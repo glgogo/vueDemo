@@ -21,13 +21,13 @@
         <!-- v-pre可以让添加此属性的标签插值表达式按照纯文本显示，跳过编译步骤 -->
         <div v-pre><span>{{msg1}}</span></div>
     </div>
-    <script src="../js/vue.min.js"></script>
+    <script src="js/vue.js"></script>
     <script>
         var app = new Vue({
             el: '#app',
             data: {
                 msg: 'hellow world',
-                msg1: '<h1>hellow world</h>'
+                msg1: '<h1>hellow world</h1>'
             }
         })
     </script>
