@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div :style='{fontSize:fontSize + "px"}'>{{content}}</div>
+        <test-demo @bigger-font="handle" @bigger-font2="handle2(10)"></test-demo>
+    </div>
+    <script>
+        /*
+            子组件向父组件传值：
+                不带参数传值：
+                1.子组件通过自定义事件向父组件传递信息
+                <button @click="$emit('testEvent')"></button>
+                2.父组件监听子组件的事件
+                <div @test-event="handle"></div>
+
+                带参数传值：
+                1.子组件通过自定义事件向父组件传递信息
+                <button @click="$emit('testEvent',$event)"></button>
+                2.父组件监听子组件的事件
+                <div @test-event="handle(10)"></div>
+
+        */
+        Vue.component('testDemo',{
+            template:`
+                <span>
+                    <button @click="$emit('bigger-font')">点我字体变大</button>
+                    <button @click="$emit('bigger-font2',$event)">点我字体变大</button>
+                </span>
+            `
+        })
+        var vm = new Vue({
+            el:'#app',
+            data(){
+                return {
+                    content:'父组件中的内容',
+                    fontSize:10
+                }
+            },
+            methods:{
+                handle(){
+                    this.fontSize += 2;
+                },
+                handle2(val){
+                    this.fontSize += val;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 父组件通过属性的方式，将值传递给子组件 -->
+        <test :str="string" :num="number" :bloo="boolean" :arr="array" :obj="object"></test>
+    </div>
+    <script>
+        /*
+            父组件向子组件传值：
+                1.子组件通过props接收传递过来的值（通过属性的方式进行传递）
+                    Vue.component('test(子组件名)',{
+                        props:['title(属性名)'],
+                        template:`<div>{{title(属性名)}}</div>`
+                    })
+
+                2.父组件通过属性将值传递给子组件
+                    <子组件名 :属性名="xxx"> </子组件名>
+                    即：<test :title='msg'></test>
+
+                3.传递值的类型：string、number、boolean、array、Object
+
+                4.注意点：
+                    在js代码中，使用驼峰式命名方式；
+                    在html代码中，使用短横线命名方式；
+                    字符串形式的模板中没有这样的限制
+        */
+        Vue.component('test',{
+            // 子组件中引入父组件传递的属性
+            props:['str','num','bloo','arr','obj'],
+            template:`
+                <div>
+                    <div>{{str}}</div>
+                    <div>{{num}}</div>
+                    <div>{{bloo}}</div>
+                    <div>
+                        <ul>
+                            <li :key="index" v-for="(item,index) in arr">{{item}}</li>    
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li :key="index" v-for="(value,key,index) in obj">{{value}}</li>    
+                        </ul>
+                    </div>
+                </div>
+            `
+        })
+        var vm = new Vue({
+            el:'#app',
+            data(){
+               return {
+                   string:'父组件中的数据',
+                   number:66,
+                    boolean:true,
+                    array:['apple','orange','banana'],
+                    object:{
+                        name:'张三',
+                        age:18,
+                        gender:'male'
+                    }
+               }
+            }
+        })
+    </script>
+</body>
+</html>
