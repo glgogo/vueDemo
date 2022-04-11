@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <alert-box>系统抛出一个错误信息</alert-box>
+        <alert-box>这里的信息传递至插槽占位处</alert-box>
+        <!-- 无内容时。默认将插槽内容传递 -->
+        <alert-box></alert-box>
+
+    </div>
+    <script>
+        /*
+            插槽的作用：我们将共同元素、内容依然在组件内进行封装，同时会将不同的元素使用slot作为占位，
+                       让外部决定到底显示什么样的元素，换句话说，slot可以作为外部代码扩展占位使用
+            插槽的基本用法：
+                1.插槽的位置：插槽存放在子组件template模板中，使用slot占位
+                例：Vue.component('alert-box',{
+                    template:`
+                        <div>
+                             <slot><slot>
+                        </div>
+                    `
+                })
+                2.插槽内容传递：在vue模板中直接定义组件标签，标签中内容默认传递至插槽占位处
+                    例：<alert-box>这里的内容将被传递至插槽占位处</alert-box>
+
+        */
+        Vue.component('alert-box',{
+            template:`
+                <div>
+                    <strong>ERR:</strong>
+                    <slot>这里是默认内容</slot>
+                </div>
+            `
+        })
+        var vm = new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>

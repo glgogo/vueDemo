@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <!-- 第一种写法 -->
+        <slot-box>
+            <h1 slot="header">头部信息</h1>
+            <p>内容信息1</p>
+            <p>内容信息2</p>
+            <div slot="footer">尾部信息</div>
+        </slot-box>
+        <!-- 第二种写法 template只是一个包裹作用的占位符，不会被渲染到页面中 -->
+        <slot-box>
+            <template slot="header">
+                <h1>头部信息1</h1>
+                <h2>头部信息2</h2>
+            </template>
+            <p>内容信息1</p>
+            <p>内容信息2</p>
+            <template slot="footer">
+                <div>底部信息1</div>
+                <div>底部信息2</div>
+            </template>
+        </slot-box>
+    </div>
+
+    <script>
+        Vue.component('slot-box',{
+            template:`
+                <div>
+                    <header>
+                        <slot name='header'></slot>
+                    </header>
+                    <main>
+                        <slot></slot>
+                    </main>
+                    <footer>
+                        <slot name='footer'></slot>
+                    </footer>    
+                </div>
+            `
+        })
+        var vm = new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <test-demo1></test-demo1>
+        <test-demo2></test-demo2>
+    </div>
+    <script>
+        var hub = new Vue();
+        Vue.component('testDemo1',{
+            data(){
+                return {
+                    num:0
+                }
+            },
+            template:`
+                <div>
+                    <div>testDemo1:{{num}}</div>
+                    <button @click='handle'>点我</button>
+                </div>
+            `,
+            methods:{
+                handle(){
+                    hub.$emit('testDemo2',1)
+                }
+            },
+            mounted(){
+                hub.$on('testDemo1',(val)=>{
+                    this.num += val;
+                })
+            }
+        })
+        Vue.component('testDemo2',{
+            data(){
+                return {
+                    num:0
+                }
+            },
+            template:`
+                <div>
+                    <div>testDemo2:{{num}}</div>
+                    <button @click='handle'>点我</button>
+                </div>
+            `,
+            methods:{
+                handle(){
+                    hub.$emit('testDemo1',2)
+                }
+            },
+            mounted(){
+                hub.$on('testDemo2',(val)=>{
+                    this.num += val;
+                })
+            }
+        })
+        var vm = new Vue({
+            el:'#app',
+
+        })
+    </script>
+</body>
+</html>
